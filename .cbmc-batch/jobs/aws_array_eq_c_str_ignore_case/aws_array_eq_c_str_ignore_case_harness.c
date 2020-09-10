@@ -7,17 +7,31 @@
 #include <proof_helpers/make_common_data_structures.h>
 #include <proof_helpers/proof_allocators.h>
 
+size_t str_len;
+
 void aws_array_eq_c_str_ignore_case_harness() {
     /* assumptions */
     size_t array_len;
-    __CPROVER_assume(array_len <= MAX_BUFFER_SIZE);
+    size_t allocated_str_len;
+    // __CPROVER_assume(array_len <= MAX_BUFFER_SIZE);
     void *array = can_fail_malloc(array_len);
-    const char *c_str = nondet_bool() ? NULL : ensure_c_str_is_allocated(MAX_BUFFER_SIZE);
+    char *c_str;
+    if (nondet_bool())
+    {
+        c_str = NULL;
+    }
+    else
+    {
+        c_str = bounded_malloc(allocated_str_len); // c*c*l* shape
+        if (allocated_str_len)
+            __CPROVER_assume(c_str[allocated_str_len-1] == 0);
+    }
+    // const char *c_str = nondet_bool() ? NULL : ensure_c_str_is_allocated(MAX_BUFFER_SIZE);
 
     /* save current state of the parameters */
     struct store_byte_from_buffer old_byte_from_array;
     save_byte_from_array((uint8_t *)array, array_len, &old_byte_from_array);
-    size_t str_len = (c_str) ? strlen(c_str) : 0;
+    str_len = (c_str) ? strlen(c_str) : 0;
     struct store_byte_from_buffer old_byte_from_str;
     save_byte_from_array((uint8_t *)c_str, str_len, &old_byte_from_str);
 

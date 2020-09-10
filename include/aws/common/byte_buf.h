@@ -124,6 +124,11 @@ AWS_COMMON_API int aws_byte_buf_init_copy(
     struct aws_allocator *allocator,
     const struct aws_byte_buf *src);
 
+#define AWS_BYTE_BUF_IS_VALID(buf)                                                                                     \
+    (buf &&                                                                                                            \
+     (((buf)->capacity == 0 && (buf)->len == 0 && (buf)->buffer == NULL) ||                                            \
+      ((buf)->capacity > 0 && (buf)->len <= (buf)->capacity && AWS_MEM_IS_WRITABLE((buf)->buffer, (buf)->len))))
+
 /**
  * Evaluates the set of properties that define the shape of all valid aws_byte_buf structures.
  * It is also a cheap check, in the sense it run in constant time (i.e., no loops or recursion).
