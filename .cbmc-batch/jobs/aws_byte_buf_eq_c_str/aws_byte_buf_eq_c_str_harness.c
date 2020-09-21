@@ -22,16 +22,11 @@ void aws_byte_buf_eq_c_str_harness() {
     // const char *c_str = ensure_c_str_is_allocated(MAX_BUFFER_SIZE);
     char *c_str;
     size_t allocated_str_len;
-    if (nondet_bool())
-    {
-        c_str = NULL;
-    }
-    else
-    {
-        c_str = bounded_malloc(allocated_str_len); // c*c*l* shape
-        if (allocated_str_len)
-            __CPROVER_assume(c_str[allocated_str_len-1] == 0);
-    }
+
+    __CPROVER_assume(allocated_str_len > 0);
+    c_str = bounded_malloc(allocated_str_len); // c*c*l* shape
+    if (allocated_str_len)
+        __CPROVER_assume(c_str[allocated_str_len-1] == 0);
 
     /* assumptions */
     // __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
