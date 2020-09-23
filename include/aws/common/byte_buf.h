@@ -136,6 +136,10 @@ AWS_COMMON_API int aws_byte_buf_init_copy(
 AWS_COMMON_API
 bool aws_byte_buf_is_valid(const struct aws_byte_buf *const buf);
 
+#define AWS_BYTE_CURSOR_IS_VALID(cursor)                                                                               \
+    ((cursor) && (((cursor)->len == 0) ||                                                                              \
+                  ((cursor)->len > 0 && (cursor)->ptr && AWS_MEM_IS_READABLE((cursor)->ptr, (cursor)->len))))
+
 /**
  * Evaluates the set of properties that define the shape of all valid aws_byte_cursor structures.
  * It is also a cheap check, in the sense it runs in constant time (i.e., no loops or recursion).

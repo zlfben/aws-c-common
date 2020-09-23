@@ -13,12 +13,12 @@ void aws_byte_cursor_eq_byte_buf_ignore_case_harness() {
     struct aws_byte_buf buf;
 
     /* assumptions */
-    __CPROVER_assume(aws_byte_cursor_is_bounded(&cur, MAX_BUFFER_SIZE));
+    // __CPROVER_assume(aws_byte_cursor_is_bounded(&cur, MAX_BUFFER_SIZE));
     ensure_byte_cursor_has_allocated_buffer_member(&cur);
-    __CPROVER_assume(aws_byte_cursor_is_valid(&cur));
-    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
+    __CPROVER_assume(AWS_BYTE_CURSOR_IS_VALID(&cur));
+    // __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
     ensure_byte_buf_has_allocated_buffer_member(&buf);
-    __CPROVER_assume(aws_byte_buf_is_valid(&buf));
+    __CPROVER_assume(AWS_BYTE_BUF_IS_VALID(&buf));
 
     /* save current state of the data structure */
     struct aws_byte_cursor old_cur = cur;
@@ -34,8 +34,8 @@ void aws_byte_cursor_eq_byte_buf_ignore_case_harness() {
     }
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&cur));
-    assert(aws_byte_buf_is_valid(&buf));
+    assert(AWS_BYTE_CURSOR_IS_VALID(&cur));
+    assert(AWS_BYTE_BUF_IS_VALID(&buf));
     if (cur.len > 0) {
         assert_byte_from_buffer_matches(cur.ptr, &old_byte_from_cur);
     }

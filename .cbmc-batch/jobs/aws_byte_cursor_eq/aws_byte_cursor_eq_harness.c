@@ -13,13 +13,13 @@ void aws_byte_cursor_eq_harness() {
     struct aws_byte_cursor rhs;
 
     /* assumptions */
-    __CPROVER_assume(aws_byte_cursor_is_bounded(&lhs, MAX_BUFFER_SIZE));
+    // __CPROVER_assume(aws_byte_cursor_is_bounded(&lhs, MAX_BUFFER_SIZE));
     ensure_byte_cursor_has_allocated_buffer_member(&lhs);
     __CPROVER_assume(aws_byte_cursor_is_valid(&lhs));
     if (nondet_bool()) {
         rhs = lhs;
     } else {
-        __CPROVER_assume(aws_byte_cursor_is_bounded(&rhs, MAX_BUFFER_SIZE));
+        // __CPROVER_assume(aws_byte_cursor_is_bounded(&rhs, MAX_BUFFER_SIZE));
         ensure_byte_cursor_has_allocated_buffer_member(&rhs);
         __CPROVER_assume(aws_byte_cursor_is_valid(&rhs));
     }
@@ -41,8 +41,8 @@ void aws_byte_cursor_eq_harness() {
     }
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&lhs));
-    assert(aws_byte_cursor_is_valid(&rhs));
+    assert(AWS_BYTE_CURSOR_IS_VALID(&lhs));
+    assert(AWS_BYTE_CURSOR_IS_VALID(&rhs));
     if (lhs.len != 0) {
         assert_byte_from_buffer_matches(lhs.ptr, &old_byte_from_lhs);
     }
