@@ -14,7 +14,7 @@ void aws_byte_cursor_left_trim_pred_harness() {
     /* assumptions */
     __CPROVER_assume(aws_byte_cursor_is_bounded(&cur, MAX_BUFFER_SIZE));
     ensure_byte_cursor_has_allocated_buffer_member(&cur);
-    __CPROVER_assume(aws_byte_cursor_is_valid(&cur));
+    __CPROVER_assume(AWS_BYTE_CURSOR_IS_VALID(&cur));
 
     /* save current state of the data structure */
     struct store_byte_from_buffer old_byte_from_cur;
@@ -24,8 +24,8 @@ void aws_byte_cursor_left_trim_pred_harness() {
     struct aws_byte_cursor rv = aws_byte_cursor_left_trim_pred(&cur, uninterpreted_predicate_fn);
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&cur));
-    assert(aws_byte_cursor_is_valid(&rv));
+    assert(AWS_BYTE_CURSOR_IS_VALID(&cur));
+    assert(AWS_BYTE_CURSOR_IS_VALID(&rv));
     if (cur.len > 0) {
         assert_byte_from_buffer_matches(cur.ptr, &old_byte_from_cur);
     }

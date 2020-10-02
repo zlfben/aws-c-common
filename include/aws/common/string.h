@@ -143,6 +143,18 @@ int aws_string_compare(const struct aws_string *a, const struct aws_string *b);
 AWS_COMMON_API
 int aws_array_list_comparator_string(const void *a, const void *b);
 
+
+/**
+ * Macro to replace aws_string_is_valid function call
+ **/ 
+
+#define AWS_BYTE_CURSOR_IS_VALID(cursor)                                                                               \
+((cursor) && (((cursor)->len == 0) ||                                                                              \
+                  ((cursor)->len > 0 && (cursor)->ptr && AWS_MEM_IS_READABLE((cursor)->ptr, (cursor)->len))))
+
+#define AWS_STRING_IS_VALID(str) \
+((str) && (AWS_MEM_IS_READABLE(&str->bytes[0], str->len + 1)) \
+       && (str->bytes[str->len] == 0))
 /**
  * Defines a (static const struct aws_string *) with name specified in first
  * argument that points to constant memory and has data bytes containing the

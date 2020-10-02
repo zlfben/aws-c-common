@@ -751,7 +751,7 @@ struct aws_byte_cursor aws_byte_cursor_right_trim_pred(
 struct aws_byte_cursor aws_byte_cursor_left_trim_pred(
     const struct aws_byte_cursor *source,
     aws_byte_predicate_fn *predicate) {
-    AWS_PRECONDITION(aws_byte_cursor_is_valid(source));
+    AWS_PRECONDITION(AWS_BYTE_CURSOR_IS_VALID(source));
     AWS_PRECONDITION(predicate != NULL);
     struct aws_byte_cursor trimmed = *source;
 
@@ -759,8 +759,8 @@ struct aws_byte_cursor aws_byte_cursor_left_trim_pred(
         --trimmed.len;
         ++trimmed.ptr;
     }
-    AWS_POSTCONDITION(aws_byte_cursor_is_valid(source));
-    AWS_POSTCONDITION(aws_byte_cursor_is_valid(&trimmed));
+    AWS_POSTCONDITION(AWS_BYTE_CURSOR_IS_VALID(source));
+    AWS_POSTCONDITION(AWS_BYTE_CURSOR_IS_VALID(&trimmed));
     return trimmed;
 }
 

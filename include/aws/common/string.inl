@@ -13,7 +13,7 @@ AWS_EXTERN_C_BEGIN
  */
 AWS_STATIC_IMPL
 const uint8_t *aws_string_bytes(const struct aws_string *str) {
-    AWS_PRECONDITION(aws_string_is_valid(str));
+    AWS_PRECONDITION(AWS_STRING_IS_VALID(str));
     return str->bytes;
 }
 

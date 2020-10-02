@@ -52,8 +52,8 @@ void aws_string_destroy_secure(struct aws_string *str) {
 }
 
 int aws_string_compare(const struct aws_string *a, const struct aws_string *b) {
-    AWS_PRECONDITION(!a || aws_string_is_valid(a));
-    AWS_PRECONDITION(!b || aws_string_is_valid(b));
+    AWS_PRECONDITION(!a || AWS_STRING_IS_VALID(a));
+    AWS_PRECONDITION(!b || AWS_STRING_IS_VALID(b));
     if (a == b) {
         return 0; /* strings identical */
     }
@@ -69,8 +69,8 @@ int aws_string_compare(const struct aws_string *a, const struct aws_string *b) {
     size_t min_len = len_a < len_b ? len_a : len_b;
 
     int ret = memcmp(aws_string_bytes(a), aws_string_bytes(b), min_len);
-    AWS_POSTCONDITION(aws_string_is_valid(a));
-    AWS_POSTCONDITION(aws_string_is_valid(b));
+    AWS_POSTCONDITION(AWS_STRING_IS_VALID(a));
+    AWS_POSTCONDITION(AWS_STRING_IS_VALID(b));
     if (ret) {
         return ret; /* overlapping characters differ */
     }
