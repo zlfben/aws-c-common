@@ -8,11 +8,22 @@
 #include <proof_helpers/proof_allocators.h>
 
 size_t str_len;
+size_t allocated_str_len;
+
+size_t strlen(const char *s)
+{
+    size_t len=0;
+    while(s[len]!=0)
+    {
+        len++;
+        __CPROVER_assume(len<allocated_str_len);
+    }
+    return len;
+}
 
 void aws_array_eq_c_str_ignore_case_harness() {
     /* assumptions */
     size_t array_len;
-    size_t allocated_str_len;
     // __CPROVER_assume(array_len <= MAX_BUFFER_SIZE);
     void *array = can_fail_malloc(array_len);
     char *c_str;
@@ -22,6 +33,7 @@ void aws_array_eq_c_str_ignore_case_harness() {
     }
     else
     {
+        __CPROVER_assume(allocated_str_len>0);
         c_str = bounded_malloc(allocated_str_len); // c*c*l* shape
         if (allocated_str_len)
             __CPROVER_assume(c_str[allocated_str_len-1] == 0);
@@ -32,6 +44,7 @@ void aws_array_eq_c_str_ignore_case_harness() {
     struct store_byte_from_buffer old_byte_from_array;
     save_byte_from_array((uint8_t *)array, array_len, &old_byte_from_array);
     str_len = (c_str) ? strlen(c_str) : 0;
+    __CPROVER_assume(str_len<allocated_str_len);
     struct store_byte_from_buffer old_byte_from_str;
     save_byte_from_array((uint8_t *)c_str, str_len, &old_byte_from_str);
 

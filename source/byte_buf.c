@@ -407,7 +407,7 @@ bool aws_array_eq_c_str_ignore_case(const void *const array, const size_t array_
         if (s == '\0') {
             return false;
         }
-
+        __CPROVER_assume(str_len > i);
         if (s_tolower_table[array_bytes[i]] != s_tolower_table[s]) {
             return false;
         }
@@ -436,6 +436,7 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
         if (s == '\0') {
             return false;
         }
+        __CPROVER_assume(str_len > i);
 
         if (array_bytes[i] != s) {
             return false;

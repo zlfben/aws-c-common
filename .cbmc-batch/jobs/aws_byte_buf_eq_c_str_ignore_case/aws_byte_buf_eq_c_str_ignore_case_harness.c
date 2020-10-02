@@ -7,11 +7,16 @@
 #include <proof_helpers/make_common_data_structures.h>
 
 size_t str_len;
+size_t allocated_str_len;
 
 size_t strlen(const char *s)
 {
     size_t len=0;
-    while(s[len]!=0) len++;
+    while(s[len]!=0)
+    {
+        len++;
+        __CPROVER_assume(len<allocated_str_len);
+    }
     return len;
 }
 
@@ -20,7 +25,7 @@ void aws_byte_buf_eq_c_str_ignore_case_harness() {
     struct aws_byte_buf buf;
 
     char *c_str;
-    size_t allocated_str_len;
+    
     __CPROVER_assume(allocated_str_len > 0);
     c_str = bounded_malloc(allocated_str_len); // c*c*l* shape
     if (allocated_str_len)
