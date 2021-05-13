@@ -436,13 +436,10 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
         if (s == '\0') {
             return false;
         }
-        __CPROVER_assume(str_len > i);
-
         if (array_bytes[i] != s) {
             return false;
         }
     }
-    __CPROVER_assume(str_len >= array_len);
 
     return str_bytes[array_len] == '\0';
 }

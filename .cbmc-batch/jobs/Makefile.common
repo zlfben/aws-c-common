@@ -40,12 +40,12 @@ LOG_FROM_ENTRY = $(LOGDIR)/$(notdir $(1:.goto=.log))
 # Setup paths to binaries
 # By default, use the version on your path; this can be overriden to select particular
 # versions of the tools. /usr/bin/goto-analyzer or ${HOME}/sw/goto-analyzer etc
-GOTO_ANALYZER ?= /home/ubuntu/abstract-cbmc/cbmc/build/bin/goto-analyzer
-GOTO_CC ?= /home/ubuntu/abstract-cbmc/cbmc/build/bin/goto-cc -Wall
-GOTO_INSTRUMENT ?= /home/ubuntu/abstract-cbmc/cbmc/build/bin/goto-instrument
-CBMC ?= /home/ubuntu/abstract-cbmc/cbmc/build/bin/cbmc
+GOTO_ANALYZER ?= ../../../cbmc/build/bin/goto-analyzer
+GOTO_CC ?= ../../../cbmc/build/bin/goto-cc -Wall
+GOTO_INSTRUMENT ?= ../../../cbmc/build/bin/goto-instrument
+CBMC ?= ../../../cbmc/build/bin/cbmc
 VIEWER ?= cbmc-viewer
-JSON ?= /home/ubuntu/abstract-cbmc/cbmc/regression/abstraction
+JSON ?= ../../../cbmc/regression/abstraction
 
 ################################################################
 # Define locations and binaries
