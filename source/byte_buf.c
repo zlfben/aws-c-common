@@ -5,6 +5,7 @@
 
 #include <aws/common/byte_buf.h>
 #include <aws/common/private/byte_buf.h>
+#include <proof_helpers/rra_lemma.h>
 
 #include <stdarg.h>
 
@@ -440,6 +441,7 @@ bool aws_array_eq_c_str(const void *const array, const size_t array_len, const c
             return false;
         }
     }
+    __RRA_lemma(str_len >= array_len);
 
     return str_bytes[array_len] == '\0';
 }
