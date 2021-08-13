@@ -34,7 +34,9 @@ void aws_array_list_copy_harness() {
     }
 
     /* assertions */
-    assert(aws_array_list_is_valid(&from));
-    assert(aws_array_list_is_valid(&to));
+    bool flag = aws_array_list_is_valid(&from);
+    assert(flag);
+    flag = aws_array_list_is_valid(&to);
+    assert(flag);
     assert(from.item_size == to.item_size);
 }

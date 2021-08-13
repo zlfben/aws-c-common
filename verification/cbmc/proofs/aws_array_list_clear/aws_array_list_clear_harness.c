@@ -15,7 +15,9 @@ void aws_array_list_clear_harness() {
 
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
-    ensure_array_list_has_allocated_data_member(&list);
+    // ensure_array_list_has_allocated_data_member(&list);
+    list.data = malloc(list.current_size);
+    list.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(aws_array_list_is_valid(&list));
 
     /* save current state of the data structure */
@@ -25,7 +27,8 @@ void aws_array_list_clear_harness() {
     aws_array_list_clear(&list);
 
     /* assertions */
-    assert(aws_array_list_is_valid(&list));
+    bool flag = aws_array_list_is_valid(&list);
+    assert(flag);
     assert(list.length == 0);
     assert(list.alloc == old.alloc);
     assert(list.current_size == old.current_size);

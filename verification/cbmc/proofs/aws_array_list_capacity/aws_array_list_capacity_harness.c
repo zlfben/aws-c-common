@@ -17,6 +17,8 @@ void aws_array_list_capacity_harness() {
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     ensure_array_list_has_allocated_data_member(&list);
     __CPROVER_assume(aws_array_list_is_valid(&list));
+    list.data = malloc(list.current_size);
+    list.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(list.item_size > 0);
 
     /* save current state of the data structure */
@@ -28,7 +30,8 @@ void aws_array_list_capacity_harness() {
     size_t capacity = aws_array_list_capacity(&list);
 
     /* assertions */
-    assert(aws_array_list_is_valid(&list));
+    bool flag = aws_array_list_is_valid(&list);
+    assert(flag);
     assert_array_list_equivalence(&list, &old, &old_byte);
     assert(capacity == list.current_size / list.item_size);
 }

@@ -38,6 +38,9 @@
 #    pragma warning(push)
 #    pragma warning(disable : 4200)
 #endif
+
+#define AWS_STRING_IS_VALID(str) (str && AWS_MEM_IS_READABLE(&str->bytes[0], str->len + 1) && str->bytes[str->len] == 0)
+
 struct aws_string {
     struct aws_allocator *const allocator;
     const size_t len;

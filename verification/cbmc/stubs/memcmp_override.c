@@ -16,9 +16,9 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 
 #if 1
     const unsigned char *sc1 = s1, *sc2 = s2;
-    for (; n != 0; n--) {
-        res = (*sc1++) - (*sc2++);
-        if (res != 0)
+    for (size_t i=0; i<n; i++) {
+        res = sc1[i]-sc2[i];
+        if(res != 0)
             return res;
     }
     return res;

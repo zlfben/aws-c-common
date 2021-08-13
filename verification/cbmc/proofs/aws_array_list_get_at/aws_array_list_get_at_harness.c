@@ -15,8 +15,10 @@ void aws_array_list_get_at_harness() {
 
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
-    ensure_array_list_has_allocated_data_member(&list);
+    list.data = malloc(list.current_size);
+    list.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(aws_array_list_is_valid(&list));
+    size_t item_size = list.item_size;
     void *val = malloc(list.item_size);
     size_t index;
 
@@ -39,6 +41,7 @@ void aws_array_list_get_at_harness() {
     }
 
     /* assertions */
-    assert(aws_array_list_is_valid(&list));
+    bool flag = aws_array_list_is_valid(&list);
+    assert(flag);
     assert_array_list_equivalence(&list, &old, &old_byte);
 }

@@ -25,7 +25,8 @@ void aws_array_list_init_dynamic_harness() {
     /* perform operation under verification */
     if (aws_array_list_init_dynamic(&list, allocator, initial_item_allocation, item_size) == AWS_OP_SUCCESS) {
         /* assertions */
-        assert(aws_array_list_is_valid(&list));
+        bool flag = aws_array_list_is_valid(&list);
+        assert(flag);
         assert(list.alloc == allocator);
         assert(list.item_size == item_size);
         assert(list.length == 0);
