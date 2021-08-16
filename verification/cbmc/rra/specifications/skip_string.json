@@ -1,0 +1,15 @@
+{
+  
+    "entries": [
+        {
+            "entity": "array",
+            "function": "main",
+            "name": "main::1::json",
+            "shape-type": "*cc+cc*",
+            "abst-function-file": "specifications/abst-funcs.c",
+            "related-entities": []
+        }
+    ]
+
+
+}

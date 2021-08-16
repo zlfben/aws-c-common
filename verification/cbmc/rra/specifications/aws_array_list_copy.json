@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_copy_harness",
+            "name": "aws_array_list_copy_harness::1::from.data",
+            "shape": "c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "array",
+                    "function": "aws_array_list_copy_harness",
+                    "name": "aws_array_list_copy_harness::1::to.data"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_copy_harness",
+                    "name": "aws_array_list_copy_harness::1::from.current_size"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_copy_harness",
+                    "name": "aws_array_list_copy_harness::1::to.current_size"
+                }
+            ]
+        }
+    ]
+}

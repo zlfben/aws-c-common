@@ -1,0 +1,43 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_eq_c_str_ignore_case_harness",
+            "name": "aws_array_eq_c_str_ignore_case_harness::1::c_str",
+            "shape": "c*c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "array",
+                    "function": "aws_array_eq_c_str_ignore_case_harness",
+                    "name": "aws_array_eq_c_str_ignore_case_harness::1::array"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_eq_c_str_ignore_case_harness",
+                    "name": "aws_array_eq_c_str_ignore_case_harness::1::array_len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_eq_c_str_ignore_case_harness",
+                    "name": "aws_array_eq_c_str_ignore_case_harness::1::str_len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_eq_c_str_ignore_case_harness",
+                    "name": "aws_array_eq_c_str_ignore_case_harness::1::allocated_str_len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "strlen",
+                    "name": "strlen::1::len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "aws_array_eq_c_str_ignore_case",
+                    "name": "aws_array_eq_c_str_ignore_case::1::1::i"
+                }
+            ]
+
+        }
+    ]
+}

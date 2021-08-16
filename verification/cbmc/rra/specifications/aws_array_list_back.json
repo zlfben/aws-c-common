@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_back_harness",
+            "name": "aws_array_list_back_harness::1::list.data",
+            "shape": "*c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_back",
+                    "name": "aws_array_list_back::1::2::total_length"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_back",
+                    "name": "aws_array_list_back::1::2::last_item_offset"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                }
+            ]
+        }
+    ]
+}

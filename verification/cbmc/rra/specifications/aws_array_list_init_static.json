@@ -1,0 +1,17 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_init_static_harness",
+            "name": "aws_array_list_init_static_harness::1::raw_array",
+            "shape": "c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_init_static_harness",
+                    "name": "aws_array_list_init_static_harness::1::len"
+                }
+            ]
+        }
+    ]
+}

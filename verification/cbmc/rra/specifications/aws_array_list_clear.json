@@ -1,0 +1,12 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_clear_harness",
+            "name": "aws_array_list_clear_harness::1::list.data",
+            "shape": "*l*",
+            "related-entities": [
+            ]
+        }
+    ]
+}

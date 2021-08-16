@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_init_copy_harness",
+            "name": "aws_byte_buf_init_copy_harness::1::src.buffer",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_init_copy_harness",
+                    "name": "aws_byte_buf_init_copy_harness::1::src.len"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_init_copy_harness",
+                    "name": "aws_byte_buf_init_copy_harness::1::2::dest_buf"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                }
+            ]
+        }
+    ]
+}

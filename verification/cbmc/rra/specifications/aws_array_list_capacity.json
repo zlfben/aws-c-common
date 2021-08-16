@@ -1,0 +1,12 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_capacity_harness",
+            "name": "aws_array_list_capacity_harness::1::list.data",
+            "shape": "*c*l*",
+            "related-entities": [
+            ]
+        }
+    ]
+}

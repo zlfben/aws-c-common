@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_swap_contents_harness",
+            "name": "aws_array_list_swap_contents_harness::1::from.data",
+            "shape": "c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_swap_contents_harness",
+                    "name": "aws_array_list_swap_contents_harness::1::from.current_size"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_array_list_swap_contents_harness",
+                    "name": "aws_array_list_swap_contents_harness::1::to.data"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_swap_contents_harness",
+                    "name": "aws_array_list_swap_contents_harness::1::to.current_size"
+                }
+            ]
+        }
+    ]
+}

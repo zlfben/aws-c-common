@@ -1,0 +1,37 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_from_c_str_harness",
+            "name": "aws_byte_buf_from_c_str_harness::1::buf.buffer",
+            "shape": "c*c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_from_c_str_harness",
+                    "name": "aws_byte_buf_from_c_str_harness::1::buf.len"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_from_c_str_harness",
+                    "name": "aws_byte_buf_from_c_str_harness::1::c_str"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_from_c_str_harness",
+                    "name": "aws_byte_buf_from_c_str_harness::1::str_len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_from_c_str_harness",
+                    "name": "aws_byte_buf_from_c_str_harness::1::allocated_str_len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "strlen",
+                    "name": "strlen::1::len"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_eq_harness",
+            "name": "aws_byte_buf_eq_harness::1::lhs.buffer",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_eq_harness",
+                    "name": "aws_byte_buf_eq_harness::1::rhs.buffer"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_eq_harness",
+                    "name": "aws_byte_buf_eq_harness::1::lhs.len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_eq_harness",
+                    "name": "aws_byte_buf_eq_harness::1::rhs.len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcmp",
+                    "name": "memcmp::1::1::i"
+                }
+            ]
+
+        }
+    ]
+}

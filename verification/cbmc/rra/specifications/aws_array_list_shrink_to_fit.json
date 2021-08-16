@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_shrink_to_fit_harness",
+            "name": "aws_array_list_shrink_to_fit_harness::1::list.data",
+            "shape": "c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_shrink_to_fit_harness",
+                    "name": "aws_array_list_shrink_to_fit_harness::1::remaining_size"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_shrink_to_fit",
+                    "name": "aws_array_list_shrink_to_fit::1::1::ideal_size_temp"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                }
+            ]
+        }
+    ]
+}

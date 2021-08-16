@@ -1,0 +1,22 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_advance_harness",
+            "name": "aws_byte_buf_advance_harness::1::buf.buffer",
+            "shape": "c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_advance_harness",
+                    "name": "aws_byte_buf_advance_harness::1::buf.len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_advance_harness",
+                    "name": "aws_byte_buf_advance_harness::1::len"
+                }
+            ]
+        }
+    ]
+}

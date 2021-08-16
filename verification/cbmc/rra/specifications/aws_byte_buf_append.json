@@ -1,0 +1,32 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_append_harness",
+            "name": "aws_byte_buf_append_harness::1::to.buffer",
+            "shape": "c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_append_harness",
+                    "name": "aws_byte_buf_append_harness::1::to.len"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_append_harness",
+                    "name": "aws_byte_buf_append_harness::1::from.ptr"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_append_harness",
+                    "name": "aws_byte_buf_append_harness::1::from.len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                }
+            ]
+        }
+    ]
+}

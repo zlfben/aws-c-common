@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_from_empty_array_harness",
+            "name": "aws_byte_buf_from_empty_array_harness::1::buf.buffer",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_from_empty_array_harness",
+                    "name": "aws_byte_buf_from_empty_array_harness::1::buf.len"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_from_empty_array_harness",
+                    "name": "aws_byte_buf_from_empty_array_harness::1::array"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_from_empty_array_harness",
+                    "name": "aws_byte_buf_from_empty_array_harness::1::capacity"
+                }
+            ]
+        }
+    ]
+}

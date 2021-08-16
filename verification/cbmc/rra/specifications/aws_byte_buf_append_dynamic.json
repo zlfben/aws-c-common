@@ -1,0 +1,47 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_append_dynamic_harness",
+            "name": "aws_byte_buf_append_dynamic_harness::1::to.buffer",
+            "shape": "c*c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_append_dynamic_harness",
+                    "name": "aws_byte_buf_append_dynamic_harness::1::to.len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_append_dynamic_harness",
+                    "name": "aws_byte_buf_append_dynamic_harness::1::to.capacity"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_buf_append_dynamic_harness",
+                    "name": "aws_byte_buf_append_dynamic_harness::1::from.ptr"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_append_dynamic_harness",
+                    "name": "aws_byte_buf_append_dynamic_harness::1::from.len"
+                },
+                {
+                    "entity": "array",
+                    "funation": "s_aws_byte_buf_append_dynamic",
+                    "name": "s_aws_byte_buf_append_dynamic::1::2::new_buffer"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memset_impl",
+                    "name": "memset_impl::1::1::1::i"
+                }
+            ]
+        }
+    ]
+}

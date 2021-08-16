@@ -1,0 +1,33 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_comparator_string_harness",
+            "name": "aws_array_list_comparator_string::1::str_a",
+            "shape": "c*c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "array",
+                    "function": "aws_array_list_comparator_string_harness",
+                    "name": "aws_array_list_comparator_string::1::str_b"
+                },
+                {
+                    "entity": "length",
+                    "function": "ensure_string_is_allocated",
+                    "name": "ensure_string_is_allocated::1::len_offset"
+                },
+                {
+                    "entity": "length",
+                    "function": "ensure_string_is_allocated",
+                    "name": "ensure_string_is_allocated::1::str_start"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcmp",
+                    "name": "memcmp::1::1::i"
+                }
+            ]
+
+        }
+    ]
+}

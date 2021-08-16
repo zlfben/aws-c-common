@@ -1,0 +1,17 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_clean_up_harness",
+            "name": "aws_byte_buf_clean_up_harness::1::buf.buffer",
+            "shape": "c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_clean_up_harness",
+                    "name": "aws_byte_buf_clean_up_harness::1::buf.len"
+                }
+            ]
+        }
+    ]
+}

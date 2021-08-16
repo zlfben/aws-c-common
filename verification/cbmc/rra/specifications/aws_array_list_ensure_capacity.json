@@ -1,0 +1,17 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_array_list_ensure_capacity_harness",
+            "name": "aws_array_list_ensure_capacity_harness::1::list.data",
+            "shape": "c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_array_list_ensure_capacity_harness",
+                    "name": "aws_array_list_ensure_capacity_harness::1::list.current_size"
+                }
+            ]
+        }
+    ]
+}

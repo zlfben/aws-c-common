@@ -1,0 +1,27 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_buf_clean_up_secure_harness",
+            "name": "aws_byte_buf_clean_up_secure_harness::1::buf.buffer",
+            "shape": "c*c*l*",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_clean_up_secure_harness",
+                    "name": "aws_byte_buf_clean_up_secure_harness::1::buf.len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_buf_clean_up_secure_harness",
+                    "name": "aws_byte_buf_clean_up_secure_harness::1::buf.capacity"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memset_impl",
+                    "name": "memset_impl::1::1::1::i"
+                }
+            ]
+        }
+    ]
+}
