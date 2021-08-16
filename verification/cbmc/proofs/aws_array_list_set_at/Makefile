@@ -18,6 +18,7 @@ PROOF_SOURCES += $(PROOF_SOURCE)/make_common_data_structures.c
 PROOF_SOURCES += $(PROOF_SOURCE)/utils.c
 
 PROOF_SOURCES += $(PROOF_STUB)/error.c
+PROOF_SOURCES += $(PROOF_STUB)/memcpy_override.c
 
 PROJECT_SOURCES += $(SRCDIR)/source/array_list.c
 PROJECT_SOURCES += $(SRCDIR)/source/common.c

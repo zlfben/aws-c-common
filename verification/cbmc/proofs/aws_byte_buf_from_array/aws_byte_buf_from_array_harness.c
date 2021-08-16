@@ -12,13 +12,15 @@ void aws_byte_buf_from_array_harness() {
     uint8_t *array;
 
     /* assumptions. */
-    ASSUME_VALID_MEMORY_COUNT(array, length);
-
+    array = malloc(sizeof(*(array)) * (length));                                                                        \
+    __CPROVER_assume(array != NULL);
+    
     /* operation under verification */
     struct aws_byte_buf buf = aws_byte_buf_from_array(array, length);
 
     /* assertions */
-    assert(aws_byte_buf_is_valid(&buf));
+    bool flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
     assert(buf.len == length);
     assert(buf.capacity == length);
     assert(buf.allocator == NULL);

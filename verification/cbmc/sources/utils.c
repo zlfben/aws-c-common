@@ -28,6 +28,8 @@ void assert_all_zeroes(const uint8_t *const a, const size_t len) {
 }
 
 void assert_byte_from_buffer_matches(const uint8_t *const buffer, const struct store_byte_from_buffer *const b) {
+    size_t b_ind = b->index;
+    uint8_t b_val = b->byte;
     if (buffer && b) {
         // uint8_t b_byte = b->byte;
         // size_t b_index = b->index;

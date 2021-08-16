@@ -13,14 +13,16 @@ void aws_byte_buf_advance_harness() {
     size_t len;
 
     /* assumptions */
-    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
-    ensure_byte_buf_has_allocated_buffer_member(&buf);
+    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, UINT32_MAX));
+    buf.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+    buf.buffer = malloc(sizeof(*(buf.buffer)) * buf.capacity);
     __CPROVER_assume(aws_byte_buf_is_valid(&buf));
     if (nondet_bool()) {
         output = buf;
     } else {
-        __CPROVER_assume(aws_byte_buf_is_bounded(&output, MAX_BUFFER_SIZE));
-        ensure_byte_buf_has_allocated_buffer_member(&output);
+        __CPROVER_assume(aws_byte_buf_is_bounded(&output, UINT32_MAX));
+        output.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+        output.buffer = malloc(sizeof(*(output.buffer)) * output.capacity);
         __CPROVER_assume(aws_byte_buf_is_valid(&output));
     }
 
@@ -47,6 +49,8 @@ void aws_byte_buf_advance_harness() {
         assert(output.allocator == NULL);
         assert(output.buffer == NULL);
     }
-    assert(aws_byte_buf_is_valid(&buf));
-    assert(aws_byte_buf_is_valid(&output));
+    bool flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
+    flag = aws_byte_buf_is_valid(&output);
+    assert(flag);
 }

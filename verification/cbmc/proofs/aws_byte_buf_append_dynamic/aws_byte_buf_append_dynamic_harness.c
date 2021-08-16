@@ -8,14 +8,17 @@
 
 void aws_byte_buf_append_dynamic_harness() {
     struct aws_byte_buf to;
-    ensure_byte_buf_has_allocated_buffer_member(&to);
+    __CPROVER_assume(aws_byte_buf_is_bounded(&to, UINT32_MAX));
+    to.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+    to.buffer = malloc(sizeof(*(to.buffer)) * to.capacity);
     __CPROVER_assume(aws_byte_buf_is_valid(&to));
 
     /* save current state of the data structure */
     struct aws_byte_buf to_old = to;
 
     struct aws_byte_cursor from;
-    ensure_byte_cursor_has_allocated_buffer_member(&from);
+    __CPROVER_assume(aws_byte_cursor_is_bounded(&from, UINT32_MAX));
+    from.ptr = malloc(from.len);
     __CPROVER_assume(aws_byte_cursor_is_valid(&from));
 
     /* save current state of the data structure */
@@ -29,8 +32,10 @@ void aws_byte_buf_append_dynamic_harness() {
         assert(to_old.len == to.len);
     }
 
-    assert(aws_byte_buf_is_valid(&to));
-    assert(aws_byte_cursor_is_valid(&from));
+    bool flag = aws_byte_buf_is_valid(&to);
+    assert(flag);
+    flag = aws_byte_cursor_is_valid(&from);
+    assert(flag);
     assert(to_old.allocator == to.allocator);
     assert_bytes_match(from_old.ptr, from.ptr, from.len);
     assert(from_old.len == from.len);

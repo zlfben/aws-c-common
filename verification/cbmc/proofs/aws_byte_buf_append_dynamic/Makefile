@@ -18,7 +18,8 @@ PROJECT_SOURCES += $(SRCDIR)/source/allocator.c
 PROOF_SOURCES += $(PROOF_SOURCE)/utils.c
 
 PROOF_SOURCES += $(PROOF_STUB)/error.c
-PROOF_SOURCES += $(PROOF_STUB)/memcpy_override_havoc.c
+PROOF_SOURCES += $(PROOF_STUB)/memcpy_override.c
+PROOF_SOURCES += $(PROOF_STUB)/memset_override.c
 
 PROJECT_SOURCES += $(SRCDIR)/source/byte_buf.c
 PROJECT_SOURCES += $(SRCDIR)/source/common.c

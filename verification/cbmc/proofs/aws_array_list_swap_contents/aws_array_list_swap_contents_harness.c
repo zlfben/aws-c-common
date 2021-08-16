@@ -16,11 +16,13 @@ void aws_array_list_swap_contents_harness() {
 
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&from, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
-    ensure_array_list_has_allocated_data_member(&from);
+    from.data = malloc(from.current_size);
+    from.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(aws_array_list_is_valid(&from));
 
     __CPROVER_assume(aws_array_list_is_bounded(&to, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
-    ensure_array_list_has_allocated_data_member(&to);
+    to.data = malloc(to.current_size);
+    to.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(aws_array_list_is_valid(&to));
 
     __CPROVER_assume(from.alloc != NULL);
@@ -43,8 +45,10 @@ void aws_array_list_swap_contents_harness() {
     aws_array_list_swap_contents(&from, &to);
 
     /* assertions */
-    assert(aws_array_list_is_valid(&from));
-    assert(aws_array_list_is_valid(&to));
+    bool flag = aws_array_list_is_valid(&from);
+    assert(flag);
+    flag = aws_array_list_is_valid(&to);
+    assert(flag);
     assert_array_list_equivalence(&from, &old_to, &old_byte_to);
     assert_array_list_equivalence(&to, &old_from, &old_byte_from);
 }

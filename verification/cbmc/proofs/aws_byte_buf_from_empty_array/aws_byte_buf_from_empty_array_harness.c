@@ -10,10 +10,12 @@ void aws_byte_buf_from_empty_array_harness() {
     size_t capacity;
     void *array;
 
-    ASSUME_VALID_MEMORY_COUNT(array, capacity);
+    array = malloc(sizeof(*(array)) * (capacity));                                                                        \
+    __CPROVER_assume(array != NULL);
 
     struct aws_byte_buf buf = aws_byte_buf_from_empty_array(array, capacity);
-    assert(aws_byte_buf_is_valid(&buf));
+    bool flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
     assert(buf.len == 0);
     assert(buf.capacity == capacity);
     assert(buf.allocator == NULL);

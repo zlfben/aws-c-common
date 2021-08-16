@@ -317,14 +317,18 @@ void aws_array_list_swap_contents(
     AWS_FATAL_PRECONDITION(list_a->alloc == list_b->alloc);
     AWS_FATAL_PRECONDITION(list_a->item_size == list_b->item_size);
     AWS_FATAL_PRECONDITION(list_a != list_b);
-    AWS_PRECONDITION(aws_array_list_is_valid(list_a));
-    AWS_PRECONDITION(aws_array_list_is_valid(list_b));
+    bool flag = aws_array_list_is_valid(list_a);
+    AWS_PRECONDITION(flag);
+    flag = aws_array_list_is_valid(list_b);
+    AWS_PRECONDITION(flag);
 
     struct aws_array_list tmp = *list_a;
     *list_a = *list_b;
     *list_b = tmp;
-    AWS_POSTCONDITION(aws_array_list_is_valid(list_a));
-    AWS_POSTCONDITION(aws_array_list_is_valid(list_b));
+    flag = aws_array_list_is_valid(list_a);
+    AWS_POSTCONDITION(flag);
+    flag = aws_array_list_is_valid(list_b);
+    AWS_POSTCONDITION(flag);
 }
 
 AWS_STATIC_IMPL
@@ -425,11 +429,13 @@ int aws_array_list_set_at(struct aws_array_list *AWS_RESTRICT list, const void *
 
 AWS_STATIC_IMPL
 void aws_array_list_sort(struct aws_array_list *AWS_RESTRICT list, aws_array_list_comparator_fn *compare_fn) {
-    AWS_PRECONDITION(aws_array_list_is_valid(list));
+    bool flag = aws_array_list_is_valid(list);
+    AWS_PRECONDITION(flag);
     if (list->data) {
         qsort(list->data, aws_array_list_length(list), list->item_size, compare_fn);
     }
-    AWS_POSTCONDITION(aws_array_list_is_valid(list));
+    flag = aws_array_list_is_valid(list);
+    AWS_POSTCONDITION(flag);
 }
 
 AWS_EXTERN_C_END

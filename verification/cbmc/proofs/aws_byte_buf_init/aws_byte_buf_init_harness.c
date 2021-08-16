@@ -14,9 +14,11 @@ void aws_byte_buf_init_harness() {
     struct aws_allocator *allocator = aws_default_allocator(); /* Precondition: allocator is non-null */
     size_t capacity;
 
+    size_t buf_size = sizeof(buf);
     if (aws_byte_buf_init(&buf, allocator, capacity) == AWS_OP_SUCCESS) {
         /* assertions */
-        assert(aws_byte_buf_is_valid(&buf));
+        bool flag = aws_byte_buf_is_valid(&buf);
+        assert(flag);
         assert(buf.allocator == allocator);
         assert(buf.len == 0);
         assert(buf.capacity == capacity);

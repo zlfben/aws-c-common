@@ -29,13 +29,17 @@ int aws_array_list_calc_necessary_size(struct aws_array_list *AWS_RESTRICT list,
 }
 
 int aws_array_list_shrink_to_fit(struct aws_array_list *AWS_RESTRICT list) {
-    AWS_PRECONDITION(aws_array_list_is_valid(list));
+    bool flag = aws_array_list_is_valid(list);
+    AWS_PRECONDITION(flag);
     if (list->alloc) {
         size_t ideal_size;
         if (aws_mul_size_checked(list->length, list->item_size, &ideal_size)) {
-            AWS_POSTCONDITION(aws_array_list_is_valid(list));
+            flag = aws_array_list_is_valid(list);
+            AWS_POSTCONDITION(flag);
             return AWS_OP_ERR;
         }
+
+        size_t ideal_size_temp = ideal_size;
 
         if (ideal_size < list->current_size) {
             void *raw_data = NULL;
@@ -43,7 +47,8 @@ int aws_array_list_shrink_to_fit(struct aws_array_list *AWS_RESTRICT list) {
             if (ideal_size > 0) {
                 raw_data = aws_mem_acquire(list->alloc, ideal_size);
                 if (!raw_data) {
-                    AWS_POSTCONDITION(aws_array_list_is_valid(list));
+                    flag = aws_array_list_is_valid(list);
+                    AWS_POSTCONDITION(flag);
                     return AWS_OP_ERR;
                 }
 
@@ -53,11 +58,13 @@ int aws_array_list_shrink_to_fit(struct aws_array_list *AWS_RESTRICT list) {
             list->data = raw_data;
             list->current_size = ideal_size;
         }
-        AWS_POSTCONDITION(aws_array_list_is_valid(list));
+        flag = aws_array_list_is_valid(list);
+        AWS_POSTCONDITION(flag);
         return AWS_OP_SUCCESS;
     }
 
-    AWS_POSTCONDITION(aws_array_list_is_valid(list));
+    flag = aws_array_list_is_valid(list);
+    AWS_POSTCONDITION(flag);
     return aws_raise_error(AWS_ERROR_LIST_STATIC_MODE_CANT_SHRINK);
 }
 
@@ -212,10 +219,12 @@ static void aws_array_list_mem_swap(void *AWS_RESTRICT item1, void *AWS_RESTRICT
 void aws_array_list_swap(struct aws_array_list *AWS_RESTRICT list, size_t a, size_t b) {
     AWS_FATAL_PRECONDITION(a < list->length);
     AWS_FATAL_PRECONDITION(b < list->length);
-    AWS_PRECONDITION(aws_array_list_is_valid(list));
+    bool flag = aws_array_list_is_valid(list);
+    AWS_PRECONDITION(flag);
 
     if (a == b) {
-        AWS_POSTCONDITION(aws_array_list_is_valid(list));
+        flag = aws_array_list_is_valid(list);
+        AWS_POSTCONDITION(flag);
         return;
     }
 
@@ -223,5 +232,6 @@ void aws_array_list_swap(struct aws_array_list *AWS_RESTRICT list, size_t a, siz
     aws_array_list_get_at_ptr(list, &item1, a);
     aws_array_list_get_at_ptr(list, &item2, b);
     aws_array_list_mem_swap(item1, item2, list->item_size);
-    AWS_POSTCONDITION(aws_array_list_is_valid(list));
+    flag = aws_array_list_is_valid(list);
+    AWS_POSTCONDITION(flag);
 }

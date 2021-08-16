@@ -6,15 +6,28 @@
 #include <aws/common/byte_buf.h>
 #include <proof_helpers/make_common_data_structures.h>
 
+size_t strlen(const char *s)
+{
+    size_t len=0;
+    while(s[len]!=0)
+        len++;
+    return len;
+}
+
 void aws_byte_buf_eq_c_str_harness() {
     /* parameters */
     struct aws_byte_buf buf;
-    const char *c_str = ensure_c_str_is_allocated(MAX_BUFFER_SIZE);
+    size_t allocated_str_len;
+    __CPROVER_assume(allocated_str_len >= 0 && allocated_str_len < UINT32_MAX);
+    const char *c_str = malloc(allocated_str_len);
+    __CPROVER_assume(c_str == NULL || c_str[allocated_str_len - 1] == '\0');
 
     /* assumptions */
     __CPROVER_assume(aws_c_string_is_valid(c_str));
-    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
-    ensure_byte_buf_has_allocated_buffer_member(&buf);
+    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, UINT32_MAX));
+    buf.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+    buf.buffer = malloc(sizeof(*(buf.buffer)) * buf.capacity);
+
     __CPROVER_assume(aws_byte_buf_is_valid(&buf));
 
     /* save current state of the parameters */
@@ -34,7 +47,8 @@ void aws_byte_buf_eq_c_str_harness() {
     }
 
     /* asserts both parameters remain unchanged */
-    assert(aws_byte_buf_is_valid(&buf));
+    bool flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
     assert_byte_buf_equivalence(&buf, &old, &old_byte);
     if (str_len > 0) {
         assert_byte_from_buffer_matches((uint8_t *)c_str, &old_byte_from_str);
