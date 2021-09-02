@@ -11,8 +11,10 @@ void aws_byte_cursor_from_buf_harness() {
     struct aws_byte_buf buf;
 
     /* assumptions */
-    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, MAX_BUFFER_SIZE));
-    ensure_byte_buf_has_allocated_buffer_member(&buf);
+    __CPROVER_assume(aws_byte_buf_is_bounded(&buf, UINT32_MAX));
+    // ensure_byte_buf_has_allocated_buffer_member(&buf);
+    buf.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+    buf.buffer = malloc(sizeof(*(buf.buffer)) * buf.capacity);
     __CPROVER_assume(aws_byte_buf_is_valid(&buf));
 
     /* save current state of the parameters */
@@ -24,8 +26,10 @@ void aws_byte_cursor_from_buf_harness() {
     struct aws_byte_cursor cur = aws_byte_cursor_from_buf(&buf);
 
     /* assertions */
-    assert(aws_byte_buf_is_valid(&buf));
-    assert(aws_byte_cursor_is_valid(&cur));
+    bool flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
+    flag = aws_byte_cursor_is_valid(&cur);
+    assert(flag);
     assert_byte_buf_equivalence(&buf, &old, &old_byte_from_buf);
     assert(cur.len == buf.len);
     if (cur.ptr) {

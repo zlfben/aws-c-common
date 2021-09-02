@@ -13,6 +13,7 @@
  *       aws_mul_u64_checked functions return AWS_OP_SUCCESS
  */
 void aws_mul_size_checked_harness() {
+    bool flag;
     if (nondet_bool()) {
         /*
          * In this particular case, full range of nondet inputs leads
@@ -24,7 +25,8 @@ void aws_mul_size_checked_harness() {
         if (!aws_mul_u64_checked(a, b, &r)) {
             assert(r == a * b);
         } else {
-            assert(__CPROVER_overflow_mult(a, b));
+            flag = __CPROVER_overflow_mult(a, b);
+            assert(flag);
         }
     } else {
         /*
@@ -37,7 +39,8 @@ void aws_mul_size_checked_harness() {
         if (!aws_mul_u32_checked(a, b, &r)) {
             assert(r == a * b);
         } else {
-            assert(__CPROVER_overflow_mult(a, b));
+            flag = __CPROVER_overflow_mult(a, b);
+            assert(flag);
         }
     }
 }

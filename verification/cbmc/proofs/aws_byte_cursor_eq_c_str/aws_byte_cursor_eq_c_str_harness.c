@@ -6,15 +6,30 @@
 #include <aws/common/byte_buf.h>
 #include <proof_helpers/make_common_data_structures.h>
 
+size_t strlen(const char *s)
+{
+    size_t len=0;
+    while(s[len]!=0)
+        len++;
+    return len;
+}
+
 void aws_byte_cursor_eq_c_str_harness() {
     /* parameters */
     struct aws_byte_cursor cur;
-    const char *c_str = ensure_c_str_is_allocated(MAX_BUFFER_SIZE);
+    const char *c_str;
+    size_t allocated_str_len;
+    __CPROVER_assume(allocated_str_len <= UINT32_MAX);
+    __CPROVER_assume(allocated_str_len>0);
+    c_str = malloc(allocated_str_len); // c*c*l* shape
+    if (allocated_str_len)
+        __CPROVER_assume(c_str[allocated_str_len-1] == 0);
 
     /* assumptions */
     __CPROVER_assume(c_str != NULL);
-    __CPROVER_assume(aws_byte_cursor_is_bounded(&cur, MAX_BUFFER_SIZE));
-    ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    __CPROVER_assume(aws_byte_cursor_is_bounded(&cur, UINT32_MAX));
+    // ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    cur.ptr = malloc(cur.len);
     __CPROVER_assume(aws_byte_cursor_is_valid(&cur));
 
     /* save current state of the parameters */
@@ -34,7 +49,8 @@ void aws_byte_cursor_eq_c_str_harness() {
     }
 
     /* asserts both parameters remain unchanged */
-    assert(aws_byte_cursor_is_valid(&cur));
+    bool flag = aws_byte_cursor_is_valid(&cur);
+    assert(flag);
     if (cur.len > 0) {
         assert_byte_from_buffer_matches(cur.ptr, &old_byte_from_cursor);
     }

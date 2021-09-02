@@ -12,13 +12,16 @@ void aws_byte_cursor_from_array_harness() {
     uint8_t *array;
 
     /* assumption */
-    ASSUME_VALID_MEMORY_COUNT(array, length);
+    // ASSUME_VALID_MEMORY_COUNT(array, length);
+    array = malloc(sizeof(*(array)) * (length));                                                                        \
+    __CPROVER_assume(array != NULL);   
 
     /* operation under verification */
     struct aws_byte_cursor cur = aws_byte_cursor_from_array(array, length);
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&cur));
+    bool flag = aws_byte_cursor_is_valid(&cur);
+    assert(flag);
     assert(cur.len == length);
     if (cur.ptr) {
         assert_bytes_match(cur.ptr, array, cur.len);

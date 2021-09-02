@@ -4,8 +4,7 @@
             "entity": "array",
             "function": "aws_byte_cursor_eq_c_str_ignore_case_harness",
             "name": "aws_byte_cursor_eq_c_str_ignore_case_harness::1::cur.ptr",
-            "shape-type": "c*c*c*c*l",
-            "abst-function-file": "specifications/abst-funcs.c",
+            "shape": "c*c*c*c*l",
             "related-entities": [
                 {
                     "entity": "length",
@@ -19,13 +18,23 @@
                 },
                 {
                     "entity": "length",
-                    "function": "",
-                    "name": "str_len"
+                    "function": "aws_byte_cursor_eq_c_str_ignore_case_harness",
+                    "name": "aws_byte_cursor_eq_c_str_ignore_case_harness::1::str_len"
                 },
                 {
                     "entity": "length",
-                    "function": "",
-                    "name": "allocated_str_len"
+                    "function": "aws_byte_cursor_eq_c_str_ignore_case_harness",
+                    "name": "aws_byte_cursor_eq_c_str_ignore_case_harness::1::allocated_str_len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "strlen",
+                    "name": "strlen::1::len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "aws_array_eq_c_str",
+                    "name": "aws_array_eq_c_str::1::1::i"
                 }
             ]
 

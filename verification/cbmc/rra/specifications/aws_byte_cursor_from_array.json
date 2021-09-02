@@ -1,0 +1,18 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_cursor_from_array_harness",
+            "name": "aws_byte_cursor_from_array_harness::1::array",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_cursor_from_array_harness",
+                    "name": "aws_byte_cursor_from_array_harness::1::length"
+                }
+            ]
+
+        }
+    ]
+}

@@ -16,8 +16,10 @@ void aws_byte_buf_reserve_harness() {
 
     if (aws_byte_buf_reserve(&buf, requested_capacity) == AWS_OP_SUCCESS) {
         assert(buf.capacity >= requested_capacity);
-        assert(aws_byte_buf_has_allocator(&buf));
-        assert(aws_byte_buf_is_valid(&buf));
+        bool flag = aws_byte_buf_has_allocator(&buf);
+        assert(flag);
+        flag = aws_byte_buf_is_valid(&buf);
+        assert(flag);
     }
 
     assert(old.len == buf.len);

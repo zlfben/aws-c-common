@@ -1,0 +1,33 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_cursor_eq_ignore_case_harness",
+            "name": "aws_byte_cursor_eq_ignore_case_harness::1::lhs.ptr",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "array",
+                    "function": "aws_byte_cursor_eq_ignore_case_harness",
+                    "name": "aws_byte_cursor_eq_ignore_case_harness::1::rhs.ptr"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_cursor_eq_ignore_case_harness",
+                    "name": "aws_byte_cursor_eq_ignore_case_harness::1::lhs.len"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_cursor_eq_ignore_case_harness",
+                    "name": "aws_byte_cursor_eq_ignore_case_harness::1::rhs.len"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "aws_array_eq_ignore_case",
+                    "name": "aws_array_eq_ignore_case::1::2::i"
+                }
+            ]
+
+        }
+    ]
+}

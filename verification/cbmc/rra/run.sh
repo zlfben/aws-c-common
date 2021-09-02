@@ -4,17 +4,14 @@
 CHECK=true
 USE_VIEWER=false
 
-# paths to cbmc bins
-CBMC_BIN_DIR="../../../../cbmc/build/bin/"
-
 # paths to the benchmark repos
 AWS_C_COMMON_PATH="../../.."
 SRC_DIR=$AWS_C_COMMON_PATH
 
 # executables
 MAKE="make"
-GOTO_INSTRUMENT="$CBMC_BIN_DIR/goto-instrument"
-CBMC="$CBMC_BIN_DIR/cbmc"
+GOTO_INSTRUMENT="goto-instrument"
+CBMC="cbmc"
 KISSAT="kissat"
 VIEWER="cbmc-viewer"
 
@@ -60,16 +57,29 @@ AWS_C_COMMON_TESTS=(
     "aws_byte_buf_from_empty_array"
     "aws_byte_buf_init"
     "aws_byte_buf_init_copy"
-    # "aws_byte_buf_eq 6"
-    # "aws_byte_buf_eq_ignore_case 6"
-    # "aws_byte_buf_eq_c_str 6"
-    # "aws_byte_buf_eq_c_str_ignore_case 6"
-    # "aws_byte_cursor_eq 4"
-    # "aws_byte_cursor_eq_c_str 5"
-    # "aws_byte_cursor_eq_c_str_ignore_case 5"
-    # "aws_byte_cursor_eq_byte_buf 5"
-    # "aws_byte_cursor_eq_byte_buf_ignore_case 5"
-    # "aws_byte_cursor_left_trim_pred 3"
+    "aws_byte_buf_init_copy_from_cursor"
+    "aws_byte_buf_reset"
+    "aws_byte_buf_secure_zero"
+    "aws_byte_buf_write"
+    "aws_byte_cursor_advance"
+    "aws_byte_cursor_advance_nospec"
+    "aws_byte_cursor_eq"
+    "aws_byte_cursor_eq_byte_buf"
+    "aws_byte_cursor_eq_byte_buf_ignore_case"
+    "aws_byte_cursor_eq_c_str"
+    "aws_byte_cursor_eq_c_str_ignore_case"
+    "aws_byte_cursor_eq_ignore_case"
+    "aws_byte_cursor_from_array"
+    "aws_byte_cursor_from_buf"
+    "aws_byte_cursor_from_c_str"
+    "aws_byte_cursor_from_string"
+    "aws_byte_cursor_read"
+    "aws_byte_cursor_read_and_fill_buffer"
+    "aws_is_power_of_two"
+    "aws_mul_size_checked"
+    "aws_mul_size_saturating"
+    "aws_nospec_mask"
+    "aws_ptr_eq"
 )
 
 cwd=$(realpath $(pwd))

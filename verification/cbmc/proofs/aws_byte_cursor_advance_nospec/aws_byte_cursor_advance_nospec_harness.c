@@ -10,9 +10,12 @@ void aws_byte_cursor_advance_nospec_harness() {
     /* data structure */
     struct aws_byte_cursor cursor;
     size_t len;
-
+    __CPROVER_assume(len < UINT32_MAX);
+    __CPROVER_assume(cursor.len < UINT32_MAX);
     /* assumptions */
-    ensure_byte_cursor_has_allocated_buffer_member(&cursor);
+    // ensure_byte_cursor_has_allocated_buffer_member(&cursor);
+    cursor.ptr = malloc(cursor.len);
+    
     __CPROVER_assume(aws_byte_cursor_is_valid(&cursor));
 
     /* save current state of cursor */
@@ -26,7 +29,8 @@ void aws_byte_cursor_advance_nospec_harness() {
     struct aws_byte_cursor rv = aws_byte_cursor_advance_nospec(&cursor, len);
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&rv));
+    bool flag = aws_byte_cursor_is_valid(&rv);
+    assert(flag);
     if (old.len > (SIZE_MAX >> 1) || len > (SIZE_MAX >> 1) || len > old.len) {
         assert(rv.ptr == NULL);
         assert(rv.len == 0);

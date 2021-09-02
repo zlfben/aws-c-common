@@ -1,0 +1,32 @@
+{
+    "entries": [
+        {
+            "entity": "array",
+            "function": "aws_byte_cursor_read_and_fill_buffer_harness",
+            "name": "aws_byte_cursor_read_and_fill_buffer_harness::1::cur.ptr",
+            "shape": "c*c*c*l",
+            "related-entities": [
+                {
+                    "entity": "length",
+                    "function": "aws_byte_cursor_read_and_fill_buffer_harness",
+                    "name": "aws_byte_cursor_read_and_fill_buffer_harness::1::cur.len"
+                },
+                {
+                    "entity": "array",
+                    "function": "aws_byte_cursor_read_and_fill_buffer_harness",
+                    "name": "aws_byte_cursor_read_and_fill_buffer_harness::1::buf.buffer"
+                },
+                {
+                    "entity": "length",
+                    "function": "aws_byte_cursor_read_and_fill_buffer_harness",
+                    "name": "aws_byte_cursor_read_and_fill_buffer_harness::1::buf.capacity"
+                },
+                {
+                    "entity": "iterator_scalar",
+                    "function": "memcpy_impl",
+                    "name": "memcpy_impl::1::1::i"
+                }
+            ]
+        }
+    ]
+}

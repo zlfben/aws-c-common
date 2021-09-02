@@ -12,9 +12,14 @@ void aws_byte_cursor_read_and_fill_buffer_harness() {
     struct aws_byte_buf buf;
 
     /* assumptions */
-    ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    // ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    cur.ptr = malloc(cur.len);
+    __CPROVER_assume(cur.len < UINT32_MAX);
     __CPROVER_assume(aws_byte_cursor_is_valid(&cur));
-    ensure_byte_buf_has_allocated_buffer_member(&buf);
+    // ensure_byte_buf_has_allocated_buffer_member(&buf);
+    buf.allocator = (nondet_bool()) ? NULL : aws_default_allocator();
+    buf.buffer = malloc(sizeof(*(buf.buffer)) * buf.capacity);
+    __CPROVER_assume(buf.capacity < UINT32_MAX);
     __CPROVER_assume(aws_byte_buf_is_valid(&buf));
 
     /* save current state of the data structure */
@@ -32,8 +37,10 @@ void aws_byte_cursor_read_and_fill_buffer_harness() {
     }
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&cur));
-    assert(aws_byte_buf_is_valid(&buf));
+    bool flag = aws_byte_cursor_is_valid(&cur);
+    assert(flag);
+    flag = aws_byte_buf_is_valid(&buf);
+    assert(flag);
     assert(old_buf.allocator == buf.allocator);
     /* the following assertions are included, because aws_byte_cursor_read internally uses
      * aws_byte_cursor_advance_nospec and it copies the bytes from the advanced cursor to *dest

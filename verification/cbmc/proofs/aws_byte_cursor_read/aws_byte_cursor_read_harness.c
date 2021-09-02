@@ -11,10 +11,12 @@ void aws_byte_cursor_read_harness() {
     struct aws_byte_cursor cur;
     size_t length;
     void *dest = malloc(length);
-
+    __CPROVER_assume(length < UINT32_MAX);
     /* assumptions */
-    ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    // ensure_byte_cursor_has_allocated_buffer_member(&cur);
+    cur.ptr = malloc(cur.len);
     __CPROVER_assume(aws_byte_cursor_is_valid(&cur));
+    __CPROVER_assume(cur.len < UINT32_MAX);
 
     /* precondition */
     __CPROVER_assume(AWS_MEM_IS_WRITABLE(dest, length));
@@ -30,7 +32,9 @@ void aws_byte_cursor_read_harness() {
     }
 
     /* assertions */
-    assert(aws_byte_cursor_is_valid(&cur));
+    bool flag = aws_byte_cursor_is_valid(&cur);
+    assert(flag);
+
     /* the following assertions are included, because aws_byte_cursor_read internally uses
      * aws_byte_cursor_advance_nospec and it copies the bytes from the advanced cursor to *dest
      */
