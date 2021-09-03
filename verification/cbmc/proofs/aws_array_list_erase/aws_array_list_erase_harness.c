@@ -9,6 +9,7 @@
 void aws_array_list_erase_harness() {
     /* parameters */
     struct aws_array_list list;
+    __CPROVER_assume(list.current_size < UINT32_MAX);
     size_t index;
 
     /* assumptions */

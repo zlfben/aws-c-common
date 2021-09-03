@@ -12,7 +12,8 @@
 void aws_array_list_clear_harness() {
     /* data structure */
     struct aws_array_list list;
-
+    __CPROVER_assume(list.current_size < UINT32_MAX);
+    
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     // ensure_array_list_has_allocated_data_member(&list);

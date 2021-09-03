@@ -12,11 +12,13 @@
 void aws_array_list_capacity_harness() {
     /* data structure */
     struct aws_array_list list;
-
+    __CPROVER_assume(list.current_size < UINT32_MAX);
+    
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     ensure_array_list_has_allocated_data_member(&list);
     __CPROVER_assume(aws_array_list_is_valid(&list));
+    
     list.data = malloc(list.current_size);
     list.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(list.item_size > 0);

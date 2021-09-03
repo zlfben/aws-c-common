@@ -13,7 +13,8 @@ void aws_array_list_copy_harness() {
     /* data structure */
     struct aws_array_list from;
     struct aws_array_list to;
-
+    __CPROVER_assume(from.current_size < UINT32_MAX);
+    __CPROVER_assume(to.current_size < UINT32_MAX);
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&from, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     ensure_array_list_has_allocated_data_member(&from);

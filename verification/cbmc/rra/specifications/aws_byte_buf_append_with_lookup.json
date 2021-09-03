@@ -22,7 +22,7 @@
                     "name": "aws_byte_buf_append_with_lookup_harness::1::from.len"
                 },
                 {
-                    "entity": "iterator_scalar",
+                    "entity": "iterator_scalar_indep",
                     "function": "aws_byte_buf_append_with_lookup",
                     "name": "aws_byte_buf_append_with_lookup::1::2::i"
                 }

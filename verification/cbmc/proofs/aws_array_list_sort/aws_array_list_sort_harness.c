@@ -22,7 +22,8 @@ int compare(const void *a, const void *b) {
 void aws_array_list_sort_harness() {
     /* data structure */
     struct aws_array_list list;
-
+    __CPROVER_assume(list.current_size < UINT32_MAX);
+    
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     list.data = malloc(list.current_size);

@@ -32,6 +32,7 @@ void aws_byte_cursor_from_c_str_harness() {
     bool flag = aws_byte_cursor_is_valid(&cur);
     assert(flag);
     if (cur.ptr) { /* if ptr is NULL len shoud be 0, otherwise equal to c_str */
+        size_t cur_len = cur.len;
         assert(cur.len == str_len);
         assert_bytes_match(cur.ptr, (uint8_t *)c_str, cur.len);
     } else {

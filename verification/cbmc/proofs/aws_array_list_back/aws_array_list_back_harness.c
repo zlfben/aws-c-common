@@ -18,6 +18,7 @@ void aws_array_list_back_harness() {
     /* assumptions */
     __CPROVER_assume(aws_array_list_is_bounded(&list, MAX_INITIAL_ITEM_ALLOCATION, MAX_ITEM_SIZE));
     // ensure_array_list_has_allocated_data_member(&list);
+    __CPROVER_assume(list.current_size < UINT32_MAX);
     list.data = malloc(list.current_size);
     list.alloc = nondet_bool() ? NULL : aws_default_allocator();
     __CPROVER_assume(aws_array_list_is_valid(&list));

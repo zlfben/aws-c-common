@@ -60,7 +60,6 @@ AWS_C_COMMON_TESTS=(
     "aws_byte_buf_init_copy_from_cursor"
     "aws_byte_buf_reset"
     "aws_byte_buf_secure_zero"
-    "aws_byte_buf_write"
     "aws_byte_cursor_advance"
     "aws_byte_cursor_advance_nospec"
     "aws_byte_cursor_eq"
@@ -83,7 +82,6 @@ AWS_C_COMMON_TESTS=(
 )
 
 cwd=$(realpath $(pwd))
-echo $cwd
 for test in "${AWS_C_COMMON_TESTS[@]}"; do
     echo "===== $test ====="
     cd $AWS_C_COMMON_PATH/verification/cbmc/proofs/$test

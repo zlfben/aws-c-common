@@ -32,9 +32,9 @@
                     "name": "strlen::1::len"
                 },
                 {
-                    "entity": "iterator_scalar",
-                    "function": "aws_array_eq_c_str",
-                    "name": "aws_array_eq_c_str::1::1::i"
+                    "entity": "iterator_scalar_indep",
+                    "function": "aws_array_eq_c_str_ignore_case",
+                    "name": "aws_array_eq_c_str_ignore_case::1::1::i"
                 }
             ]
 

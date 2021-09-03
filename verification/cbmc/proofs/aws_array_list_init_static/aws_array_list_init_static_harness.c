@@ -12,7 +12,8 @@
 void aws_array_list_init_static_harness() {
     /* data structure */
     struct aws_array_list list; /* Precondition: list is non-null */
-
+    __CPROVER_assume(list.current_size < UINT32_MAX);
+    
     /* parameters */
     size_t item_size;
     size_t initial_item_allocation;

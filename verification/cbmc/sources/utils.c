@@ -28,12 +28,7 @@ void assert_all_zeroes(const uint8_t *const a, const size_t len) {
 }
 
 void assert_byte_from_buffer_matches(const uint8_t *const buffer, const struct store_byte_from_buffer *const b) {
-    size_t b_ind = b->index;
-    uint8_t b_val = b->byte;
     if (buffer && b) {
-        // uint8_t b_byte = b->byte;
-        // size_t b_index = b->index;
-        // uint8_t buf_byte = *(buffer + b->index);
         assert(*(buffer + b->index) == b->byte);
     }
 }
@@ -42,11 +37,7 @@ void save_byte_from_array(const uint8_t *const array, const size_t size, struct 
     if (size > 0 && array && storage) {
         storage->index = nondet_size_t();
         __CPROVER_assume(storage->index < size);
-        // size_t stor_index = storage->index;
-        // uint8_t arr_byte = array[storage->index];
-        // uint8_t arr_byte2 = *(array + storage->index);
         storage->byte = array[storage->index];
-        // uint8_t stor_byte = storage->byte;
     }
 }
 
