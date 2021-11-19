@@ -27,7 +27,7 @@
                     "name": "aws_byte_buf_eq_c_str_ignore_case_harness::1::allocated_str_len"
                 },
                 {
-                    "entity": "iterator_scalar",
+                    "entity": "iterator_scalar_indep",
                     "function": "aws_array_eq_c_str_ignore_case",
                     "name": "aws_array_eq_c_str_ignore_case::1::1::i"
                 },
