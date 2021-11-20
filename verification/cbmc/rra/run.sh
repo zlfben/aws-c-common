@@ -83,7 +83,7 @@ for test in "${AWS_C_COMMON_TESTS[@]}"; do
     proof_fold=$(realpath $(pwd))
     # compile program into goto-programs
     $MAKE veryclean > /dev/null 2>&1
-    rm .ninja_deps
+    rm .ninja_deps .ninja_log .litani_cache_dir
     $MAKE goto > /dev/null 2>&1
     echo "Goto programs built"
     cd $cwd
